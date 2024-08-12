@@ -16,14 +16,15 @@ This project is a NestJS-based API for managing building locations.
 
 - Node.js (v14 or later)
 - npm or pnpm
-- Docker (optional)
+- Docker (optional) ( recommended )
+- Docker-compose (optional) ( recommended )
 
 ## Installation
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/building-locations-api.git
-   cd building-locations-api
+   git clone git@github.com:ariefitriadin/manageloc.git
+   cd manageloc
    ```
 
 2. Install dependencies:
