@@ -23,8 +23,9 @@ RUN pnpm run build
 
 FROM node:20
 
-# Install netcat
-RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
+# Install pnpm and netcat
+RUN npm install -g pnpm && \
+    apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -34,6 +35,9 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
+
+# Add this line to check the contents of the dist directory in the final image
+RUN ls -la dist
 
 # Copy entrypoint script
 COPY entrypoint.sh .
