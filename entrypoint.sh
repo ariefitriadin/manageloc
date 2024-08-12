@@ -18,4 +18,4 @@ npx prisma migrate deploy
 
 # Start the application
 echo "Starting the application..."
-npm run start:prod
+pnpm run start:prod
