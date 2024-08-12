@@ -11,13 +11,13 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?connection_limit=5&schema=public
+      - DATABASE_URL=postgresql://prisma:topsecret@postgres:5432/location?connection_limit=5&schema=public
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_SCHEMA=public
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}        
+      - POSTGRES_USER=prisma
+      - POSTGRES_PASSWORD=topsecret
+      - POSTGRES_DB=location        
     env_file:
       - .env.docker
 
@@ -32,7 +32,7 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U prisma -d location"]
       interval: 5s
       timeout: 5s
       retries: 5
